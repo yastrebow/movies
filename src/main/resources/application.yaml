@@ -2,6 +2,9 @@ server:
   port: 8080
 
 spring:
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
   jpa:
     hibernate:
       ddl-auto: validate
@@ -18,5 +21,3 @@ spring:
     user: postgres
     password: Andy1964
     driver-class-name: org.postgresql.Driver
-
-
