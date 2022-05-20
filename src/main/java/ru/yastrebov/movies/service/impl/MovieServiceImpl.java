@@ -1,6 +1,5 @@
 package ru.yastrebov.movies.service.impl;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.yastrebov.movies.model.Movie;
 import ru.yastrebov.movies.model.MovieDTO;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MovieServiceImpl implements MovieService{
+public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
     private final MovieMapper movieMapper;

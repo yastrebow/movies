@@ -17,10 +17,8 @@
 
     <properties>
         <java.version>11</java.version>
-<!--        add-->
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-<!--        end-->
     </properties>
 
     <dependencies>
@@ -42,13 +40,11 @@
             <artifactId>mapstruct</artifactId>
             <version>1.4.2.Final</version>
         </dependency>
-<!-- add-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok-mapstruct-binding</artifactId>
             <version>${lombok-mapstruct-binding.version}</version>
         </dependency>
-<!--end-->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
@@ -95,7 +91,7 @@
                 <configuration>
                     <excludes>
                         <exclude>
-                            <groupId>org.projectlombok</groupId>
+                            <groupId>org.project-lombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
@@ -115,7 +111,6 @@
                             <artifactId>mapstruct-processor</artifactId>
                             <version>1.4.2.Final</version>
                         </path>
-<!--                        add-->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
@@ -126,7 +121,6 @@
                             <artifactId>lombok-mapstruct-binding</artifactId>
                             <version>${lombok-mapstruct-binding.version}</version>
                         </path>
-<!--                        end-->
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
@@ -154,7 +148,7 @@
                             <importMappings>
                                 <importMapping>java.util.Date=java.time.LocalDateTime</importMapping>
                             </importMappings>
-                            <inputSpec>${project.basedir}/src/main/resources/open-api/openapitemp.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/src/main/resources/open-api/openapi.yaml</inputSpec>
                             <configOptions>
                                 <delegatePattern>false</delegatePattern>
                                 <interfaceOnly>true</interfaceOnly>

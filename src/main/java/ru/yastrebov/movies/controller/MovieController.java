@@ -1,6 +1,5 @@
 package ru.yastrebov.movies.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yastrebov.movies.api.MoviesApi;
