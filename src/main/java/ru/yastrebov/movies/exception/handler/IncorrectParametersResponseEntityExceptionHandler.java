@@ -13,7 +13,7 @@ public class IncorrectParametersResponseEntityExceptionHandler extends ResponseE
 
     @ExceptionHandler(WrongArgumentException.class)
     protected ResponseEntity<Object> handleException(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "'404' Bad Request. Incorrect parameters. 'skip' must be greater than 'first' and divisible by 'first' without a remainder";
+        String bodyOfResponse = "Incorrect parameters. 'skip' must be greater than 'first' and divisible by 'first' without a remainder";
 
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
