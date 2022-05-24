@@ -1,15 +1,13 @@
 package ru.yastrebov.movies.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import ru.yastrebov.movies.model.Movie;
 import ru.yastrebov.movies.model.MovieDTO;
 import ru.yastrebov.movies.mupstruct.MovieMapper;
 import ru.yastrebov.movies.repository.MovieRepository;
 import ru.yastrebov.movies.service.MovieService;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,14 +17,11 @@ public class MovieServiceImpl implements MovieService {
     private final MovieMapper movieMapper;
 
     @Override
-    public List<MovieDTO> getListOfMovies(Integer first, Integer skip) {
-        List<Movie> listOfAllMovies = movieRepository.findAll();
+    public Page<MovieDTO> getListOfMovies(Integer first, Integer skip) {
 
-        return listOfAllMovies
-                .stream()
-                .skip(skip)
-                .limit(first)
-                .map(movieMapper::entityToDto)
-                .collect(Collectors.toList());
+        int skipPages = skip / first;
+
+        return movieRepository.findAll(PageRequest.of(skipPages, first)).map(movieMapper::entityToDto);
     }
 }
+

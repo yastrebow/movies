@@ -1,10 +1,9 @@
 package ru.yastrebov.movies.service;
 
+import org.springframework.data.domain.Page;
 import ru.yastrebov.movies.model.MovieDTO;
-
-import java.util.List;
 
 public interface MovieService {
 
-    List<MovieDTO> getListOfMovies(Integer first, Integer skip);
+    Page<MovieDTO> getListOfMovies(Integer first, Integer skip);
 }
