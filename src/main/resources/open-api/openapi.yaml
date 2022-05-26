@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: 'Movies API'
+  description: 'Work with DB Movies'
+  contact:
+    name: 'Iastrebov Andrei'
+    url: 'https://github.com/yastrebow'
+  version: 1.0-version
+servers:
+  - url: 'http://localhost:8880/'
+    description: 'localhost'
+paths:
+  /movies:
+    get:
+      tags:
+        - List of Movies from DB
+      summary: Get movies from DB page by page
+      operationId: getListOfMovies
+      description: Access to DB of movies from 1895 till today
+      parameters:
+        - name: first
+          in: query
+          description: The number of Movies on page to return
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+          example: 50
+
+        - name: skip
+          in: query
+          description: The number of movies to skip before starting to collect the result list
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            exclusiveMinimum: true
+            maximum: 150000000
+          example: 100000
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MovieDTO'
+        '404':
+          description: No applications present
+
+components:
+  schemas:
+    MovieDTO:
+      title: Response
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Movie id
+          format: int64
+          example: 123456789
+        release:
+          type: string
+          description: Year of release
+          example: 1985
+        title:
+          type: string
+          description: Movie title
+          example: Hudson Hawk

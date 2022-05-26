@@ -18,5 +18,3 @@ spring:
     user: postgres
     password: Andy1964
     driver-class-name: org.postgresql.Driver
-
-
