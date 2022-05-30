@@ -21,7 +21,7 @@ public class MovieServiceImpl implements MovieService {
 
         int skipPages = skip / first;
 
-        return movieRepository.findAll(PageRequest.of(skipPages, first)).map(movieMapper::entityToDto);
+        return movieRepository.findAll(PageRequest.of(skipPages, first)).map(movieMapper::movieToDto);
     }
 }
 
