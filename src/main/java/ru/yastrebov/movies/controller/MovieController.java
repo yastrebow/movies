@@ -2,12 +2,9 @@ package ru.yastrebov.movies.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
 import ru.yastrebov.movies.api.MoviesApi;
-import ru.yastrebov.movies.exception.handler.IncorrectParametersResponseEntityExceptionHandler;
 import ru.yastrebov.movies.exception.handler.WrongArgumentException;
 import ru.yastrebov.movies.model.MovieDTO;
 import ru.yastrebov.movies.service.MovieService;

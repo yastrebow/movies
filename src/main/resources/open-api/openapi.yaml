@@ -7,7 +7,7 @@ info:
     url: 'https://github.com/yastrebow'
   version: 1.0-version
 servers:
-  - url: 'http://localhost:8880/'
+  - url: 'http://localhost:8080/'
     description: 'localhost'
 paths:
   /movies:
@@ -27,11 +27,10 @@ paths:
             format: int32
             minimum: 1
             maximum: 100
-          example: 50
-
+            example: 50
         - name: skip
           in: query
-          description: The number of movies to skip before starting to collect the result list
+          description: The number of movies to skip before starting to collect the result   list
           required: true
           schema:
             type: integer
@@ -39,8 +38,7 @@ paths:
             minimum: 0
             exclusiveMinimum: true
             maximum: 150000000
-          example: 100000
-
+            example: 100000
       responses:
         '200':
           description: OK
@@ -53,11 +51,59 @@ paths:
         '404':
           description: No applications present
 
+  /review:
+    get:
+      tags:
+        - List of all reviews
+      summary: Get all reviews from DB
+      operationId: getAllReviews
+      description: Access to DB of reviews
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReviewDTO'
+        '404':
+          description: No applications present
+
+  /review/{movieId}/reviews:
+    get:
+      tags:
+        - List of reviews about some movie
+      summary: Get reviews about some movie from DB
+      operationId: getReviewsAboutSomeMovie
+      description: Access to DB of reviews
+      parameters:
+        - name: movieId
+          in: path
+          description: ID of movie
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReviewDTO'
+        '404':
+          description: No applications present
+
 components:
   schemas:
     MovieDTO:
+      description: Info about movie
       title: Response
       type: object
+      x-tablename: movies
       properties:
         id:
           type: integer
@@ -72,3 +118,32 @@ components:
           type: string
           description: Movie title
           example: Hudson Hawk
+
+    ReviewDTO:
+      description: Info about review
+      title: Response
+      type: object
+      x-tablename: reviews
+      properties:
+        id:
+          type: integer
+          description: Review id
+          format: int64
+          example: 123456789
+        name:
+          type: string
+          description: name of author of review
+          example: John Dow
+        created_time:
+          type: string
+          format: date
+          description: creation of review date and time
+          example: 2001-12-14T21:59:43.10-05:00
+        text:
+          type: string
+          description: text of review
+          example: It's a perfect movie!!!
+        movie_id:
+          type: integer
+          description: movie id
+          example: 123456789

@@ -12,10 +12,10 @@ import ru.yastrebov.movies.model.MovieDTO;
         builder = @Builder(disableBuilder = true))
 public interface MovieMapper {
 
-    MovieDTO entityToDto(Movie movie);
+    MovieDTO movieToDto(Movie movie);
 
-    Movie dtoToEntity(MovieDTO movieDTO);
+    Movie dtoToMovie(MovieDTO movieDTO);
 
     @BeanMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL)
-    void updateFromDtoToEntity(MovieDTO movieDTO, @MappingTarget Movie movie);
+    void updateFromDtoToMovie(MovieDTO movieDTO, @MappingTarget Movie movie);
 }
